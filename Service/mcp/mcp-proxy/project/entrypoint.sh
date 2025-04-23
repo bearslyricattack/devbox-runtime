@@ -11,12 +11,12 @@ if [ "$1" = "dev" ]; then
   echo "Development environment detected"
   echo "Running development environment commands..."
   # 开发环境命令
-  cd /home/devbox/project && python -m project --sse-port=8080 npx @modelcontextprotocol/server-puppeteer
+  cd /home/devbox/project && python -m project
 else
   echo "Production environment detected"
   echo "Running production environment commands..."
   # 生产环境命令
-  cd /home/devbox/project && python -m project --sse-port=8080 npx @modelcontextprotocol/server-puppeteer
+  cd /home/devbox/project && python -m project
 fi
 
 # 退出虚拟环境
