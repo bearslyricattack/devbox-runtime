@@ -1,2 +1,3 @@
 .vscode
 Language/rust/project/target/
+.idea
