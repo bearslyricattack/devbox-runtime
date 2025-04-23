@@ -1,7 +1,7 @@
 FROM ghcr.io/labring-actions/devbox/debian-ssh-12.6:547a61
 
 RUN cd /home/devbox/project && \rm -rf ./*
-COPY /Service/mcp/mcp-proxy/project /home/devbox/project
+COPY /Service/mcp/mcp-proxy/project /home/devbox/project/project
 
 RUN apt-get update && \
     apt-get install -y python3 python3-pip python3-venv && \
