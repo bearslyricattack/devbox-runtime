@@ -18,6 +18,7 @@ prod_commands() {
     echo "Running production environment commands..."
     # In the production environment, we may need to add other parameters
     python __main__.py --sse-port=8080 npx @modelcontextprotocol/server-puppeteer
+}
 
 # Check environment variables to determine the running environment
 if [ "$app_env" = "production" ] || [ "$app_env" = "prod" ] ; then
