@@ -1,32 +1,23 @@
 #!/bin/bash
 
-app_env=${1:-development}
+# 激活虚拟环境
+source /home/devbox/project/.venv/bin/activate
 
-# ※To use pip, parameters need to be added: --break-system-packages
-. .venv/bin/activate
-# Activate virtual environment
+# 添加当前目录到Python路径
+export PYTHONPATH=$PYTHONPATH:/home/devbox/project
 
-# Development environment commands
-dev_commands() {
-    echo "Running development environment commands..."
-    # In the development environment, we may need more debugging information
-    cd /home/devbox
-    python -m project --sse-port=8080 npx @modelcontextprotocol/server-puppeteer
-}
-
-# Production environment commands
-prod_commands() {
-    echo "Running production environment commands..."
-    # In the production environment, we may need to add other parameters
-    cd /home/devbox
-    python -m project --sse-port=8080 npx @modelcontextprotocol/server-puppeteer
-}
-
-# Check environment variables to determine the running environment
-if [ "$app_env" = "production" ] || [ "$app_env" = "prod" ] ; then
-    echo "Production environment detected"
-    prod_commands
+# 检测环境
+if [ "$1" = "dev" ]; then
+  echo "Development environment detected"
+  echo "Running development environment commands..."
+  # 开发环境命令
+  cd /home/devbox/project && python -m project
 else
-    echo "Development environment detected"
-    dev_commands
+  echo "Production environment detected"
+  echo "Running production environment commands..."
+  # 生产环境命令
+  cd /home/devbox/project && python -m project
 fi
+
+# 退出虚拟环境
+deactivate
